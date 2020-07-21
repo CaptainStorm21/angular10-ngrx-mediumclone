@@ -7,6 +7,11 @@ import { AuthModule } from './auth/auth.module';
 
 import { StoreModule } from '@ngrx/store';
 
+//redux tools
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
+
+
 @NgModule({
   declarations: [
     AppComponent
@@ -15,7 +20,11 @@ import { StoreModule } from '@ngrx/store';
     BrowserModule,
     AppRoutingModule,
     AuthModule,
-    StoreModule.forRoot([])
+    StoreModule.forRoot([]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, //last 25 records
+      logOnly: environment.production, //resist ext in log only mode
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
